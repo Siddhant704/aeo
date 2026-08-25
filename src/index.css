@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   The light is warm and comes from the top-left. Every shadow on
+   this page agrees about that, which is what makes the depth read
+   as one physical space instead of a pile of effects.
+   ============================================================ */
+@layer components {
+  /* resting on the table */
+  .surface {
+    box-shadow:
+      3px 5px 14px -6px rgba(84, 62, 33, 0.18),
+      0 1px 2px rgba(84, 62, 33, 0.05);
+  }
+
+  /* picked up off the table — shadow lengthens down and to the right */
+  .surface-raised {
+    box-shadow:
+      12px 20px 36px -12px rgba(84, 62, 33, 0.3),
+      0 2px 5px rgba(84, 62, 33, 0.08);
+  }
+
+  /* pressed back down into it */
+  .surface-pressed {
+    box-shadow: 1px 2px 5px -2px rgba(84, 62, 33, 0.2);
+  }
+
+  .scene {
+    perspective: 1000px;
+  }
+}
+
+@layer base {
+  /* Keyboard users get the same affordance the cursor gets. */
+  :focus-visible {
+    outline: 2px solid #1f3d2b;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #fbf7ee;
+  }
+}
+
+/* Motion is an enhancement, never the message. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
